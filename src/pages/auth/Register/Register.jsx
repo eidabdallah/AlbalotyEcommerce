@@ -9,7 +9,7 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Register() {
-  const { register, handleSubmit, watch, formState: { errors },} = useForm();
+  const { register, handleSubmit, watch, formState: { errors }, } = useForm();
   const password = watch("password");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -20,7 +20,7 @@ export default function Register() {
 
   return (
     <div className="text-center px-3">
-      <img src={logo} alt="Logo" className="img-fluid w-50 bg-dark rounded-circle mb-3"/>
+      <img src={logo} alt="Logo" className="img-fluid w-50 bg-dark rounded-circle mb-3" />
       <h4 className="fw-bold mb-4">SIGN UP</h4>
 
       <Form onSubmit={handleSubmit(registerForm)}>
@@ -62,41 +62,48 @@ export default function Register() {
           </Form.Control.Feedback>
         </FloatingLabel>
 
-        <FloatingLabel label="Phone Number" className="mb-3">
-          <Form.Control
-            type="tel"
-            {...register("phoneNumber", {
-              required: "Phone number is required",
-              pattern: {
-                value: /^\d{10}$/,
-                message: "Must be 10 digits",
-              },
-            })}
-            isInvalid={!!errors.phoneNumber}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errors.phoneNumber?.message}
-          </Form.Control.Feedback>
-        </FloatingLabel>
+        <Row className="mb-3">
+          <Col xs={6}>
+            <FloatingLabel label="Phone Number">
+              <Form.Control
+                type="tel"
+                {...register("phoneNumber", {
+                  required: "Phone number is required",
+                  pattern: {
+                    value: /^\d{10}$/,
+                    message: "Must be 10 digits",
+                  },
+                })}
+                isInvalid={!!errors.phoneNumber}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.phoneNumber?.message}
+              </Form.Control.Feedback>
+            </FloatingLabel>
+          </Col>
 
-        <FloatingLabel label="Address" className="mb-3">
-          <Form.Control
-            type="text"
-            {...register("address", {
-              required: "Address is required",
-              minLength: {
-                value: 2,
-                message: "Minimum 2 characters",
-              },
-            })}
-            isInvalid={!!errors.address}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errors.address?.message}
-          </Form.Control.Feedback>
-        </FloatingLabel>
+          <Col xs={6}>
+            <FloatingLabel label="Address">
+              <Form.Control
+                type="text"
+                {...register("address", {
+                  required: "Address is required",
+                  minLength: {
+                    value: 2,
+                    message: "Minimum 2 characters",
+                  },
+                })}
+                isInvalid={!!errors.address}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.address?.message}
+              </Form.Control.Feedback>
+            </FloatingLabel>
+          </Col>
+        </Row>
 
-       <Row className="mb-3">
+
+        <Row className="mb-3">
           <Col xs={6} className="position-relative">
             <FloatingLabel label="Password">
               <Form.Control
