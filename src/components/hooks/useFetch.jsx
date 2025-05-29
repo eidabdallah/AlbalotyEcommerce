@@ -14,7 +14,7 @@ export default function useFetch(url) {
             setData(data);
             setError(null);
         }catch(err){
-            setError(err.response.data.message);
+            setError(err.response?.data.message || err.message);
             console.log(err);
         }finally{
             setIsLoading(false);

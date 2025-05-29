@@ -9,7 +9,6 @@ import "swiper/css/navigation";
 
 export default function Categories() {
     const { data, isLoading, error } = useFetch(`${import.meta.env.VITE_BURL}/categories/active`);
-
     if (isLoading) return <Loading />;
 
     return (

@@ -1,7 +1,11 @@
-import React from 'react'
+import React from "react";
+import { Outlet } from "react-router-dom";
 
 export default function UserLayout() {
   return (
-    <div>UserLayout</div>
-  )
+    <>
+      <h2>gggggg</h2>
+      <Outlet />
+    </>
+  );
 }
