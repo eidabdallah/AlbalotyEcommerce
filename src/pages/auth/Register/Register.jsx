@@ -21,8 +21,8 @@ export default function Register() {
   const registerForm = async (data) => {
     const response = await postData(data);
     if (response && response.status === 201) {
-      ToastMessage({ message: "Register done, please check your email", type: "success", });
-      navigate("/user");
+      ToastMessage({ message: "You're registered! Verify your email, then log in", type: "success", });
+      navigate("/");
     }
   };
   return (
@@ -30,7 +30,7 @@ export default function Register() {
       <img src={logo} alt="Logo" className="img-fluid w-50 bg-dark rounded-circle mb-3" />
       <h4 className="fw-bold mb-4">SIGN UP</h4>
       <Form onSubmit={handleSubmit(registerForm)}>
-        {serverError && <AlertMessage message={serverError} color="danger" />}
+        {serverError && <AlertMessage message={serverError} color="warning" />}
         <InputField label="User Name" type="text" registerProps={register("userName", { required: "Username is required", pattern: { value: /^[A-Za-z\s]+$/, message: "Only letters and spaces" }, minLength: { value: 3, message: "Minimum 3 characters" } })} error={errors.userName} />
         <InputField label="Email" type="email" registerProps={register("email", { required: "Email is required", pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net)$/, message: "Must end with .com or .net" } })} error={errors.email} />
         <Row className="mb-3">
