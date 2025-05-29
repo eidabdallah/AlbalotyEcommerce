@@ -1,0 +1,41 @@
+.logoMain {
+    font-weight: 700;
+    font-size: 24px;
+    color: white;
+}
+
+.logoIcon {
+    color: #fcbf49;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.navLink {
+    transition: color 0.3s ease;
+}
+
+.icons {
+  color: white;
+  font-size: 1.1rem;
+}
+
+.iconItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 12px;
+  border-radius: 30px;
+  transition: background 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.iconItem:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.iconItem span {
+  font-size: 0.95rem;
+  font-weight: 500;
+}

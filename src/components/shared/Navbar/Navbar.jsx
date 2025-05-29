@@ -6,8 +6,8 @@ import { FaSearch, FaUser, FaHeart, FaShoppingCart } from "react-icons/fa";
 import { FiChevronDown } from "react-icons/fi";
 import styles from "./Navbar.module.css";
 import { useState } from "react";
-import AuthModal from "../../../pages/auth/AuthModal.jsx";
 import { Link } from 'react-router-dom';
+import AuthModal from './../../../pages/auth/AuthModal.jsx';
 
 export default function CustomNavbar() {
     const [showModal, setShowModal] = useState(false);
@@ -64,12 +64,26 @@ export default function CustomNavbar() {
                             <Nav.Link className={`${styles.navLink} fw-bold fs-5 text-white`}>BLOGS</Nav.Link>
                         </Nav>
 
-                        <div className={`${styles.icons} d-flex align-items-center fs-5 text-white gap-5`}>
-                            <FaSearch />
-                            <FaUser onClick={() => setShowModal(true)} />
-                            <FaHeart />
-                            <FaShoppingCart />
+                        <div className={`${styles.icons} d-flex align-items-center gap-3`}>
+                            <div className={styles.iconItem}>
+                                <FaSearch />
+                                <span>Search</span>
+                            </div>
+                            <div className={styles.iconItem} onClick={() => setShowModal(true)}>
+                                <FaUser />
+                                <span>Account</span>
+                            </div>
+                            {/* <div className={styles.iconItem}>
+                                <FaHeart />
+                                <span>Favorites</span>
+                            </div> */}
+                            <div className={styles.iconItem}>
+                                <FaShoppingCart />
+                                <span>Cart</span>
+                            </div>
                         </div>
+
+
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

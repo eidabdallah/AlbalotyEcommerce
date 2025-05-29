@@ -1,5 +1,5 @@
-import CustomNavbar from "./../components/user/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
+import CustomNavbar from "../components/shared/Navbar/Navbar.jsx";
 
 export default function AuthLayout() {
   return (
