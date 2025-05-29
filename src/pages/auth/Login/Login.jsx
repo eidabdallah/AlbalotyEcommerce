@@ -18,6 +18,7 @@ export default function Login() {
     const response = await postData(data);
     if (response && response.status === 200) {
       ToastMessage({ message: "log in Successfully", type: "success", });
+      localStorage.setItem("userToken" , response.data.token);
       navigate("/user");
     }
   };
