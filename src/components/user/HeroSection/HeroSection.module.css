@@ -39,6 +39,7 @@
   min-height: 32px;
   animation: blinkCursor 0.7s steps(1) infinite;
   text-align: left;
+  font-weight: bold;
 }
 
 @keyframes blinkCursor {

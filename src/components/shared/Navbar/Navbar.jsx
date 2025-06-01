@@ -5,18 +5,28 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { FaSearch, FaUser, FaHeart, FaShoppingCart } from "react-icons/fa";
 import { FiChevronDown } from "react-icons/fi";
 import styles from "./Navbar.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import AuthModal from './../../../pages/auth/AuthModal.jsx';
 
 export default function CustomNavbar() {
     const [showModal, setShowModal] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 30);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
         <>
-            <Navbar expand="lg" className="bg-black shadow-sm sticky-top">
+            <Navbar expand="lg" className={`${styles.navbarCustom} ${isScrolled ? styles.shrink : ""} shadow-sm sticky-top`}>
                 <Container>
-                    <Navbar.Brand>
+                    <Navbar.Brand className={styles.logoWrapper}>
                         <span className={styles.logoIcon}>Al-Bal</span>
                         <span className={styles.logoMain}>OOO</span>
                         <span className={styles.logoIcon}>tiyeh</span>
@@ -73,17 +83,11 @@ export default function CustomNavbar() {
                                 <FaUser />
                                 <span>Account</span>
                             </div>
-                            {/* <div className={styles.iconItem}>
-                                <FaHeart />
-                                <span>Favorites</span>
-                            </div> */}
                             <div className={styles.iconItem}>
                                 <FaShoppingCart />
                                 <span>Cart</span>
                             </div>
                         </div>
-
-
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

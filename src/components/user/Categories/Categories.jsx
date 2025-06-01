@@ -11,19 +11,18 @@ export default function Categories() {
   const { data, isLoading, error } = useFetch(`${import.meta.env.VITE_BURL}/categories/active`);
 
   if (isLoading) return <Loading />;
-
   return (
     <div className="container py-5">
+
+
+      <h2 className={`text-center fw-bold ${styles.title}`}>
+        Explore Categories
+      </h2>
       {error && (
         <Alert variant="danger" className="text-center fw-bold shadow-sm">
           ⚠️ Error: {error}
         </Alert>
       )}
-
-      <h2 className={`text-center fw-bold ${styles.title}`}>
-        Explore Categories
-      </h2>
-
       <Swiper
         modules={[Autoplay]}
         spaceBetween={25}

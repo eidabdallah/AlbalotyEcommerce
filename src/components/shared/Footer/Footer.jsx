@@ -14,7 +14,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className={`${styles.footer} pt-5 pb-4 mt-5`}>
+    <footer className={`${styles.footer} pt-5 pb-4`}>
       <div className="container">
         <div className="row gy-4 justify-content-between align-items-start text-start">
           <div className="col-md-4 text-center text-md-start">
