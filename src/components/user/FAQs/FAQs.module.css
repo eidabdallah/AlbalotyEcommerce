@@ -1,0 +1,91 @@
+.faqSection {
+    background: #f9fafb;
+    padding: 80px 0;
+}
+
+.title {
+    color: #222;
+    font-size: 2.2rem;
+    letter-spacing: 1.2px;
+    border-bottom: 3px solid #ffc107;
+    display: inline-block;
+    padding-bottom: 12px;
+    margin-bottom: 2rem;
+    user-select: none;
+}
+
+.faqGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.faqCard {
+    background: #fff;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+    flex: 1 1 260px;
+    max-width: 320px;
+}
+
+.faqCard:hover {
+    transform: translateY(-5px);
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.icon {
+    font-size: 1.6rem;
+    color: #f59e0b;
+    margin-right: 10px;
+}
+
+.question {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 0;
+}
+.answer {
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+.askBox {
+    background: #ffc107;
+    border: 1px solid #facc15;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    max-width: 650px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.askHeader {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+.askIcon {
+    font-size: 1.9rem;
+    margin-left: 6px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.submitBtn {
+    align-self: flex-end;
+}

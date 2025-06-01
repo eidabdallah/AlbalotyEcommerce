@@ -28,7 +28,7 @@ export default function Services() {
   ];
 
   return (
-    <div className='my-5'>
+    <div className='my-5 bg-light py-5'>
       <Container>
         <h2 className={`text-center fw-bold ${styles.title}`}> OUR SERVICES</h2>
         <Row className="text-center g-4">
