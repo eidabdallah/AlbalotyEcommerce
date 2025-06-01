@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import styles from './Footer.module.css';
-import logo from '../../../assets/logo/logo.png';
+import logo from '../../../assets/logo/logoFooter.jpg';
 import ToastMessage from './../ToastMessage/ToastMessage';
 
 export default function Footer() {
@@ -19,11 +19,7 @@ export default function Footer() {
         <div className="row gy-4 justify-content-between align-items-start text-start">
           <div className="col-md-4 text-center text-md-start">
             <img src={logo} alt="Al-Baloootiyeh Logo" className={styles.logo} />
-            <p className={styles.description}>
-              Al-Balooootiyeh Store: Your destination for premium products with a touch of elegance.
-            </p>
           </div>
-
           <div className="col-md-2">
             <h5 className={styles.heading}>Quick Links</h5>
             <ul className={styles.navLinks}>

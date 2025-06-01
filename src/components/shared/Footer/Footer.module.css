@@ -7,10 +7,10 @@
 }
 
 .logo {
-  width: 250px;
+  width: 100%;
   max-width: 100%;
-  filter: drop-shadow(0 0 5px rgba(255, 193, 7, 0.7));
   transition: transform 0.3s ease;
+  background-color: red;
 }
 
 .logo:hover {
