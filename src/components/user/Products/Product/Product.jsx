@@ -21,9 +21,15 @@ export default function Product({ apiPath, title }) {
     return (
         <div className="py-5">
             <Container>
-                <div className="d-flex justify-content-between align-items-center mb-3">
-                    <h2 className={`fw-bold ${styles.title}`}>{title}</h2>
-                    <Form.Select onChange={handleSortChange} value={sort} style={{ width: '200px' }}>
+                <h2 className={`fw-bold ${styles.title}`}>{title}</h2>
+                <div className="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+                    <Form className="flex-grow-1" style={{ maxWidth: '400px' }}>
+                        <div className="position-relative">
+                            <Form.Control type="text" placeholder="🔍 Search for products..."  {...register('search')} className="ps-5 rounded-pill shadow-sm border-secondary" />
+                            <i className="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+                        </div>
+                    </Form>
+                    <Form.Select onChange={handleSortChange} value={sort} style={{ width: '200px' }} className="rounded-pill shadow-sm border-secondary"                    >
                         <option value="">Sort By</option>
                         <option value="finalPrice">Price Low to High</option>
                         <option value="-finalPrice">Price High to Low</option>
@@ -31,15 +37,6 @@ export default function Product({ apiPath, title }) {
                         <option value="-name">Name Z-A</option>
                     </Form.Select>
                 </div>
-
-                <Form className="mb-4">
-                    <div className="position-relative" style={{ maxWidth: '400px' }}>
-                        <Form.Control type="text" placeholder="🔍 Search for products..." {...register('search')} className="ps-5 rounded-pill shadow-sm border-secondary" />
-                        <i className="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
-                    </div>
-                </Form>
-
-
                 {error ? (<Alert variant="danger" className="text-center fw-bold shadow-sm">⚠️ Error: {error}    </Alert>)
                     : data?.products?.length === 0 ? (<Alert variant="warning" className="text-center fw-bold shadow-sm"> No products found.</Alert>)
                         : null}
