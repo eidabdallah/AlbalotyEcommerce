@@ -52,9 +52,9 @@ export default function CustomNavbar() {
                         <Offcanvas.Body className="d-flex flex-column">
                             <Nav className="flex-column mb-4">
                                 <Nav.Link as={Link} to={"/"} className={`${styles.navLink} fw-bold fs-5 text-white mb-2`}>HOME</Nav.Link>
-                                <Nav.Link as={Link} to={"/ggg"} className={`${styles.navLink} fw-bold fs-5 text-white mb-2`}>fff</Nav.Link>
-                                <Nav.Link className={`${styles.navLink} fw-bold fs-5 text-white mb-2`}>SHOP</Nav.Link>
-                                <Nav.Link className={`${styles.navLink} fw-bold fs-5 text-white`}>BLOGS</Nav.Link>
+                                <Nav.Link as={Link} to={"/products"} className={`${styles.navLink} fw-bold fs-5 text-white me-4`}>ALL PRODUCTS</Nav.Link>
+                                {/* <Nav.Link className={`${styles.navLink} fw-bold fs-5 text-white mb-2`}>SHOP</Nav.Link>
+                                <Nav.Link className={`${styles.navLink} fw-bold fs-5 text-white`}>BLOGS</Nav.Link> */}
                             </Nav>
 
                             <div className="d-flex gap-4 justify-content-evenly fs-4">
@@ -69,9 +69,9 @@ export default function CustomNavbar() {
                     <Navbar.Collapse id="navbar-nav" className="d-none d-lg-flex">
                         <Nav className="mx-auto">
                             <Nav.Link as={Link} to={"/"} className={`${styles.navLink} fw-bold fs-5 text-white me-4`}>HOME</Nav.Link>
-                            <Nav.Link as={Link} to={"/ggg"} className={`${styles.navLink} fw-bold fs-5 text-white me-4`}>fff</Nav.Link>
-                            <Nav.Link className={`${styles.navLink} fw-bold fs-5 text-white me-4`}>SHOP</Nav.Link>
-                            <Nav.Link className={`${styles.navLink} fw-bold fs-5 text-white`}>BLOGS</Nav.Link>
+                            <Nav.Link as={Link} to={"/products"} className={`${styles.navLink} fw-bold fs-5 text-white me-4`}>ALL PRODUCTS</Nav.Link>
+                            {/* <Nav.Link className={`${styles.navLink} fw-bold fs-5 text-white me-4`}>SHOP</Nav.Link>
+                            <Nav.Link className={`${styles.navLink} fw-bold fs-5 text-white`}>BLOGS</Nav.Link> */}
                         </Nav>
 
                         <div className={`${styles.icons} d-flex align-items-center gap-3`}>

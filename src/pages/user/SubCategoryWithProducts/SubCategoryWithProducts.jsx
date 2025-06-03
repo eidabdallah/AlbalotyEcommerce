@@ -7,6 +7,6 @@ export default function SubCategoryWithProducts() {
   const { categoryId } = useParams();
   return <>
   <SubCategories id={categoryId} />
-  <Product id={categoryId} apiPath={`products/productsCategory/${categoryId}`} title={"Product"} />
+  <Product apiPath={`products/productsCategory/${categoryId}`} title={"Product"} />
   </>
 }
