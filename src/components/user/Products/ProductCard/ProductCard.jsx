@@ -6,7 +6,7 @@ export default function ProductCard({ product }) {
     return (
         <Card className={`h-100 shadow-sm ${styles.cardHover}`}>
             <div className={styles.imageWrapper}>
-                <Card.Img variant="top" src={product.mainImage} className={styles.cardImage} />
+                <Card.Img variant="top" src={product.mainImage.secure_url || product.mainImage } className={styles.cardImage} />
             </div>
             <Card.Body>
                 <Card.Title className={styles.productTitle} title={product.name}>

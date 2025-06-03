@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import styles from "./SliderGridCategories.module.css";
 export default function SliderGridCategories({ title, data = [], linkPath = null }) {
     return (
-        <>  <h2 className={`text-center fw-bold my-5 ${styles.title}`}>
+        <>  <h2 className={`fw-bold my-5 ${styles.title}`}>
             {title}
         </h2>
             <Swiper

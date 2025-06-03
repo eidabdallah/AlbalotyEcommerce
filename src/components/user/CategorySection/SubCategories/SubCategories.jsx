@@ -10,7 +10,13 @@ export default function SubCategories({ id }) {
 
   return (
     <>
+
       <div className="container pb-5">
+        {data.subcategories?.length > 0 &&
+          <h2 className={styles.categoryHeader}>
+            <span>{data.subcategories[0]?.categoryId?.name}</span> Category
+          </h2>
+        }
         <SliderGridCategories title="Explore Subcategories" data={data.subcategories} linkPath="/subCategoryProducts" />
         {error ? (<Alert variant="danger" className="text-center fw-bold shadow-sm">⚠️ Error: {error} </Alert>) : null}
       </div>
