@@ -23,7 +23,7 @@ export default function useFetch(url) {
     useEffect(()=>{
         getData();
         // return () => controller.abort();
-    },[])
+    },[url])
 
   return {data , error , isLoading};
 }

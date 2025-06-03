@@ -6,6 +6,7 @@ import MainLayout from "./layout/MainLayout.jsx";
 import Home from "./pages/user/Home/Home.jsx";
 import ForgetPassword from "./pages/auth/ForgetPassword/ForgetPassword.jsx";
 import { ToastContainer } from "react-toastify";
+import SubCategoryWithProducts from "./pages/user/SubCategoryWithProducts/SubCategoryWithProducts.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -18,8 +19,8 @@ export default function App() {
           element: <Home />,
         },
         {
-          path: "ggg",
-          element: <ForgetPassword />,
+          path: "category/:categoryId",
+          element: <SubCategoryWithProducts />,
         },
       ],
     },
