@@ -12,7 +12,6 @@ export default function SubCategoryDetails() {
     if(isLoading)
         <Loading />
     return (
-        
         <>  
             {error ? ( <Alert variant="danger" className="text-center fw-bold shadow-sm"> ⚠️ Error: {error} </Alert> ) : data?.subCategory?.name ? (
                 <div>
@@ -26,7 +25,5 @@ export default function SubCategoryDetails() {
                 </Alert>
             )}
         </>
-   
-        
     )
 }
