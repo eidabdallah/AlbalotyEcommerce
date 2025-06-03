@@ -1,10 +1,8 @@
-import React from 'react'
 import { useParams } from 'react-router-dom'
 import useFetch from '../../../hooks/useFetch.jsx';
 import Loading from '../../../shared/Loading/Loading.jsx';
 import { Alert, Container, Row, Col } from 'react-bootstrap';
 import styles from './SubCategoryDetails.module.css'
-import ProductCard from '../../Products/ProductCard/ProductCard.jsx';
 import Product from '../../Products/Product/Product.jsx';
 export default function SubCategoryDetails() {
     const { subCategoryId } = useParams();
