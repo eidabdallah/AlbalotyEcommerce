@@ -8,6 +8,7 @@ import ForgetPassword from "./pages/auth/ForgetPassword/ForgetPassword.jsx";
 import { ToastContainer } from "react-toastify";
 import SubCategoryWithProducts from "./pages/user/SubCategoryWithProducts/SubCategoryWithProducts.jsx";
 import Product from "./components/user/Products/Product/Product.jsx";
+import SubCategoryDetails from "./components/user/CategorySection/SubCategoryDetails/SubCategoryDetails.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -22,6 +23,10 @@ export default function App() {
         {
           path: "category/:categoryId",
           element: <SubCategoryWithProducts />,
+        },
+         {
+          path: "subCategoryProducts/:subCategoryId",
+          element: <SubCategoryDetails />,
         },
          {
           path: "products",
