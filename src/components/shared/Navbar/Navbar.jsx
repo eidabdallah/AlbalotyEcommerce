@@ -2,17 +2,23 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { FaSearch, FaUser, FaHeart, FaShoppingCart } from "react-icons/fa";
+import { FaSearch, FaUser, FaHeart, FaShoppingCart, FaLock } from "react-icons/fa";
 import { FiChevronDown } from "react-icons/fi";
 import styles from "./Navbar.module.css";
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthModal from './../../../pages/auth/AuthModal.jsx';
+import { useAuth } from "../../../Context/AuthContext.jsx";
 
 export default function CustomNavbar() {
+    const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-
+    const { isGuest } = useAuth();
+    const logout = () => {
+        localStorage.removeItem("userToken");
+        navigate("/");
+    }
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 30);
@@ -51,10 +57,20 @@ export default function CustomNavbar() {
                         </Offcanvas.Header>
                         <Offcanvas.Body className="d-flex flex-column">
                             <Nav className="flex-column mb-4">
-                                <Nav.Link as={Link} to={"/"} className={`${styles.navLink} fw-bold fs-5 text-white mb-2`}>HOME</Nav.Link>
-                                <Nav.Link as={Link} to={"/products"} className={`${styles.navLink} fw-bold fs-5 text-white me-4`}>ALL PRODUCTS</Nav.Link>
-                                {/* <Nav.Link className={`${styles.navLink} fw-bold fs-5 text-white mb-2`}>SHOP</Nav.Link>
-                                <Nav.Link className={`${styles.navLink} fw-bold fs-5 text-white`}>BLOGS</Nav.Link> */}
+                                <Nav.Link
+                                    as={Link}
+                                    to={isGuest ? "/" : "/user"}
+                                    className={`${styles.navLink} fw-bold fs-5 text-white mb-2`}
+                                >
+                                    HOME
+                                </Nav.Link>
+                                <Nav.Link
+                                    as={Link}
+                                    to={isGuest ? "/products" : "/user/products"}
+                                    className={`${styles.navLink} fw-bold fs-5 text-white mb-2`}
+                                >
+                                    PRODUCTS
+                                </Nav.Link>
                             </Nav>
 
                             <div className="d-flex gap-4 justify-content-evenly fs-4">
@@ -68,23 +84,82 @@ export default function CustomNavbar() {
 
                     <Navbar.Collapse id="navbar-nav" className="d-none d-lg-flex">
                         <Nav className="mx-auto">
-                            <Nav.Link as={Link} to={"/"} className={`${styles.navLink} fw-bold fs-5 text-white me-4`}>HOME</Nav.Link>
-                            <Nav.Link as={Link} to={"/products"} className={`${styles.navLink} fw-bold fs-5 text-white me-4`}>ALL PRODUCTS</Nav.Link>
-                            {/* <Nav.Link className={`${styles.navLink} fw-bold fs-5 text-white me-4`}>SHOP</Nav.Link>
-                            <Nav.Link className={`${styles.navLink} fw-bold fs-5 text-white`}>BLOGS</Nav.Link> */}
+                            <Nav.Link
+                                as={Link}
+                                to={isGuest ? "/" : "/user"}
+                                className={`${styles.navLink} fw-bold fs-5 text-white me-4`}
+                            >
+                                HOME
+                            </Nav.Link>
+                            <Nav.Link
+                                as={Link}
+                                to={isGuest ? "/products" : "/user/products"}
+                                className={`${styles.navLink} fw-bold fs-5 text-white me-4`}
+                            >
+                                PRODUCTS
+                            </Nav.Link>
                         </Nav>
 
                         <div className={`${styles.icons} d-flex align-items-center gap-3`}>
                             <div className={styles.iconItem}>
-                                <FaSearch />
-                                <span>Search</span>
+                                <Link
+                                    to={"/user/profile"}
+                                    style={{
+                                        textDecoration: 'none',
+                                        color: 'inherit',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '5px',
+                                    }}
+                                >
+                                    <FaUser />
+                                    <span>Profile</span>
+                                </Link>
                             </div>
-                            <div className={styles.iconItem} onClick={() => setShowModal(true)}>
-                                <FaUser />
-                                <span>Account</span>
-                            </div>
+
                             <div className={styles.iconItem}>
-                                <Link to="/cart" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '5px', }}                                >
+                                {isGuest ? (
+                                    <div
+                                        onClick={() => setShowModal(true)}
+                                        style={{
+                                            cursor: "pointer",
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '5px',
+                                            color: 'inherit',
+                                        }}
+                                    >
+                                        <FaLock />
+                                        <span>Account</span>
+                                    </div>
+                                ) : (
+                                    <div
+                                        onClick={logout}
+                                        style={{
+                                            cursor: "pointer",
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '5px',
+                                            color: 'inherit',
+                                        }}
+                                    >
+                                        <FaLock />
+                                        <span>Logout</span>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className={styles.iconItem}>
+                                <Link
+                                    to={"/user/cart"}
+                                    style={{
+                                        textDecoration: 'none',
+                                        color: 'inherit',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '5px',
+                                    }}
+                                >
                                     <FaShoppingCart />
                                     <span>Cart</span>
                                 </Link>

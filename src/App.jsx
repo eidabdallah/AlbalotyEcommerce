@@ -13,69 +13,107 @@ import ProductDetails from "./pages/user/ProductDetails/ProductDetails.jsx";
 import Cart from "./pages/user/Cart/Cart.jsx";
 import ProtectedRoute from './components/user/ProtectedRoute.jsx';
 import AuthProvider from "./Context/AuthContext.jsx";
+import Profile from "./pages/user/Profile/Profile.jsx";
+import AuthProtectedRoute from './components/user/AuthProtectedRoute.jsx';
 export default function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <AuthProvider isGuest={true}>
-        <MainLayout />
-      </AuthProvider>,
-      children: [
-        {
-          path: "",
-          element: <Home />,
-        },
-        {
-          path: "category/:categoryId",
-          element: <SubCategoryWithProducts />,
-        },
-        {
-          path: "subCategoryProducts/:subCategoryId",
-          element: <SubCategoryDetails />,
-        },
-        {
-          path: "productDetails/:productId",
-          element: <ProductDetails />,
-        },
-        {
-          path: "products",
-          element: <Product apiPath={`products`} title={"ALL Product"} />,
-        },
-        {
-          path: "cart",
-          element: <ProtectedRoute>
-            <Cart />,
-          </ProtectedRoute>
-        },
-      ],
-    },
-    {
-      path: "/auth",
-      element: <AuthLayout />,
-      children: [
-        {
-          path: "forgotPassword",
-          element: <ForgetPassword />,
-        },
-      ],
-    },
-    {
-      path: "/user",
-      element: <AuthProvider isGuest={false}>
+ const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <AuthProtectedRoute>
+        <AuthProvider isGuest={true}>
+          <MainLayout />
+        </AuthProvider>
+      </AuthProtectedRoute>
+    ),
+    children: [
+      {
+        path: "",
+        element: <Home />,
+      },
+      {
+        path: "category/:categoryId",
+        element: <SubCategoryWithProducts />,
+      },
+      {
+        path: "subCategoryProducts/:subCategoryId",
+        element: <SubCategoryDetails />,
+      },
+      {
+        path: "productDetails/:productId",
+        element: <ProductDetails />,
+      },
+      {
+        path: "products",
+        element: <Product apiPath={`products`} title={"ALL Product"} />,
+      },
+    ],
+  },
+  {
+    path: "/auth",
+    element: (
+      <AuthProtectedRoute>
+        <AuthLayout />
+      </AuthProtectedRoute>
+    ),
+    children: [
+      {
+        path: "forgotPassword",
+        element: <ForgetPassword />,
+      },
+    ],
+  },
+  {
+    path: "/user",
+    element: (
+      <AuthProvider isGuest={false}>
         <UserLayout />
-      </AuthProvider>,
-      children: [
-        {
-          path: "",
-          element: <Home />,
-        },
-      ],
-    },
-    {
-      path: "/dashboard",
-      element: <DashboardLayout />,
-    },
-  ]);
+      </AuthProvider>
+    ),
+    children: [
+      {
+        path: "",
+        element: <Home />,
+      },
+      {
+        path: "category/:categoryId",
+        element: <SubCategoryWithProducts />,
+      },
+      {
+        path: "subCategoryProducts/:subCategoryId",
+        element: <SubCategoryDetails />,
+      },
+      {
+        path: "productDetails/:productId",
+        element: <ProductDetails />,
+      },
+      {
+        path: "products",
+        element: <Product apiPath={`products`} title={"ALL Product"} />,
+      },
+      {
+        path: "cart",
+        element: (
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+  },
+]);
   return (
     <>
       <ToastContainer />

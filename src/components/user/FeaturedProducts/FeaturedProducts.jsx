@@ -36,7 +36,7 @@ export default function FeaturedProducts() {
                     {data.products.map((product) => (
                         <Col key={product._id} md={3} sm={6}>
                             <Card className={`h-100 shadow-sm ${styles.cardHover}`}>
-                                <Link to={`/productDetails/${product._id}`} className="text-decoration-none text-dark">
+                                <Link to={isGuest ? `/productDetails/${product._id}` : `/user/productDetails/${product._id}`} className="text-decoration-none text-dark">
                                     <div className={styles.imageWrapper}>
                                         <Card.Img
                                             variant="top"

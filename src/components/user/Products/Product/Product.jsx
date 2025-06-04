@@ -8,7 +8,9 @@ import ProductCard from '../ProductCard/ProductCard.jsx';
 import Pagination from './../Pagination/Pagination.jsx';
 import useProductFilters from '../../../hooks/useProductFilters.jsx';
 import { Link } from 'react-router-dom';
+import { useAuth } from "../../../../Context/AuthContext.jsx";
 export default function Product({ apiPath, title }) {
+    const { isGuest } = useAuth();
     const { page, setPage, limit, sort, setSort, search, register } = useProductFilters();
     const url = `${import.meta.env.VITE_BURL}/${apiPath}?page=${page}&limit=${limit}${sort ? `&sort=${sort}` : ''}${search ? `&search=${search}` : ''}`;
     const { data, isLoading, error } = useFetch(url , true);
@@ -43,7 +45,7 @@ export default function Product({ apiPath, title }) {
                 <Row className="g-4">
                     {data.products.map((product) => (
                         <Col key={product._id} md={3} sm={6}>
-                            <Link to={`/productDetails/${product._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <Link to={isGuest ? `/productDetails/${product._id}` : `/user/productDetails/${product._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                 <ProductCard product={product} />
                             </Link>
                         </Col>
