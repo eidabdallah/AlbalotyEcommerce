@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import SubCategoryWithProducts from "./pages/user/SubCategoryWithProducts/SubCategoryWithProducts.jsx";
 import Product from "./components/user/Products/Product/Product.jsx";
 import SubCategoryDetails from "./components/user/CategorySection/SubCategoryDetails/SubCategoryDetails.jsx";
+import GetProductDetails from "./pages/user/getProductDetails/getProductDetails.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -24,11 +25,15 @@ export default function App() {
           path: "category/:categoryId",
           element: <SubCategoryWithProducts />,
         },
-         {
+        {
           path: "subCategoryProducts/:subCategoryId",
           element: <SubCategoryDetails />,
         },
-         {
+        {
+          path: "productDetails/:productId",
+          element: <GetProductDetails />,
+        },
+        {
           path: "products",
           element: <Product apiPath={`products`} title={"ALL Product"} />,
         },

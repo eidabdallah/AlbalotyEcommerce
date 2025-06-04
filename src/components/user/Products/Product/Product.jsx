@@ -7,11 +7,11 @@ import useFetch from '../../../hooks/useFetch.jsx';
 import ProductCard from '../ProductCard/ProductCard.jsx';
 import Pagination from './../Pagination/Pagination.jsx';
 import useProductFilters from '../../../hooks/useProductFilters.jsx';
-
+import { Link } from 'react-router-dom';
 export default function Product({ apiPath, title }) {
     const { page, setPage, limit, sort, setSort, search, register } = useProductFilters();
     const url = `${import.meta.env.VITE_BURL}/${apiPath}?page=${page}&limit=${limit}${sort ? `&sort=${sort}` : ''}${search ? `&search=${search}` : ''}`;
-    const { data, isLoading, error } = useFetch(url);
+    const { data, isLoading, error } = useFetch(url , true);
     const totalPages = Math.ceil(data?.count / limit);
     const handleSortChange = (e) => {
         setSort(e.target.value);
@@ -43,7 +43,9 @@ export default function Product({ apiPath, title }) {
                 <Row className="g-4">
                     {data.products.map((product) => (
                         <Col key={product._id} md={3} sm={6}>
-                            <ProductCard product={product} />
+                            <Link to={`/productDetails/${product._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                <ProductCard product={product} />
+                            </Link>
                         </Col>
                     ))}
                 </Row>
