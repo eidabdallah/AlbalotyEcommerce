@@ -2,11 +2,11 @@ import { useParams } from "react-router-dom";
 import useFetch from "../../../components/hooks/useFetch.jsx";
 import Loading from "../../../components/shared/Loading/Loading.jsx";
 import { useState } from "react";
-import styles from "./GetProductDetails.module.css";
+import styles from "./ProductDetails.module.css";
 import { FaTag, FaBox, FaStar } from "react-icons/fa";
 import { Alert } from "react-bootstrap";
 
-export default function GetProductDetails() {
+export default function ProductDetails() {
   const { productId } = useParams();
   const { data, isLoading, error } = useFetch(`${import.meta.env.VITE_BURL}/products/${productId}`);
   const [selectedImage, setSelectedImage] = useState(null);

@@ -8,8 +8,8 @@ import ForgetPassword from "./pages/auth/ForgetPassword/ForgetPassword.jsx";
 import { ToastContainer } from "react-toastify";
 import SubCategoryWithProducts from "./pages/user/SubCategoryWithProducts/SubCategoryWithProducts.jsx";
 import Product from "./components/user/Products/Product/Product.jsx";
-import GetProductDetails from "src/pages/user/GetProductDetails/GetProductDetails.jsx";
 import SubCategoryDetails from "./components/user/CategorySection/SubCategoryDetails/SubCategoryDetails.jsx";
+import ProductDetails from "./pages/user/ProductDetails/ProductDetails.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -31,7 +31,7 @@ export default function App() {
         },
         {
           path: "productDetails/:productId",
-          element: <GetProductDetails />,
+          element: <ProductDetails />,
         },
         {
           path: "products",
