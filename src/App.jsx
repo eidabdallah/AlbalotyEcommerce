@@ -11,12 +11,15 @@ import Product from "./components/user/Products/Product/Product.jsx";
 import SubCategoryDetails from "./components/user/CategorySection/SubCategoryDetails/SubCategoryDetails.jsx";
 import ProductDetails from "./pages/user/ProductDetails/ProductDetails.jsx";
 import Cart from "./pages/user/Cart/Cart.jsx";
-
+import ProtectedRoute from './components/user/ProtectedRoute.jsx';
+import AuthProvider from "./Context/AuthContext.jsx";
 export default function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <MainLayout />,
+      element: <AuthProvider isGuest={true}>
+        <MainLayout />
+      </AuthProvider>,
       children: [
         {
           path: "",
@@ -40,7 +43,9 @@ export default function App() {
         },
         {
           path: "cart",
-          element: <Cart />,
+          element: <ProtectedRoute>
+            <Cart />,
+          </ProtectedRoute>
         },
       ],
     },
@@ -56,7 +61,9 @@ export default function App() {
     },
     {
       path: "/user",
-      element: <UserLayout />,
+      element: <AuthProvider isGuest={false}>
+        <UserLayout />
+      </AuthProvider>,
       children: [
         {
           path: "",

@@ -4,10 +4,19 @@ import useFetch from '../../hooks/useFetch.jsx';
 import styles from './FeaturedProducts.module.css';
 import { FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import ToastMessage from '../../shared/ToastMessage/ToastMessage.jsx';
+import { useAuth } from '../../../Context/AuthContext.jsx';
 
 export default function FeaturedProducts() {
     const { data, isLoading, error } = useFetch(`${import.meta.env.VITE_BURL}/products?limit=4`);
-
+    const { isGuest } = useAuth();
+    const handleAddToCart = () => {
+        if (isGuest) {
+            ToastMessage({ message: "Please log in to add products to your cart.", type: "info" });
+            return;
+        }
+        // addToCart(product._id, navigate);
+    };
     if (isLoading) return <Loading />;
 
     return (
@@ -54,7 +63,7 @@ export default function FeaturedProducts() {
                                             )}
                                         </div>
 
-                                        <Button variant="warning" className="mt-3 d-flex align-items-center justify-content-center gap-2">
+                                        <Button variant="warning" className="mt-3 d-flex align-items-center justify-content-center gap-2" onClick={handleAddToCart} style={isGuest ? { cursor: "not-allowed" } : {}} title={isGuest ? "Log in to add to cart" : ""}>
                                             <FaShoppingCart />
                                             Add to Cart
                                         </Button>

@@ -13,8 +13,7 @@ export default function useFetch(url , shouldTrack = false , config = {}) {
             setError(null);
             setResponse(result)
         }catch(err){
-            setError(err.result?.data.message || err.message);
-            console.log(err);
+            setError(err.response?.data.message || err.message);
         }finally{
             setIsLoading(false);
         }
