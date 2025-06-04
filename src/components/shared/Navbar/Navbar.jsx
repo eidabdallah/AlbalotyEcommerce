@@ -84,8 +84,10 @@ export default function CustomNavbar() {
                                 <span>Account</span>
                             </div>
                             <div className={styles.iconItem}>
-                                <FaShoppingCart />
-                                <span>Cart</span>
+                                <Link to="/cart" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '5px', }}                                >
+                                    <FaShoppingCart />
+                                    <span>Cart</span>
+                                </Link>
                             </div>
                         </div>
                     </Navbar.Collapse>

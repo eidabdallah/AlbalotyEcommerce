@@ -10,6 +10,7 @@ import SubCategoryWithProducts from "./pages/user/SubCategoryWithProducts/SubCat
 import Product from "./components/user/Products/Product/Product.jsx";
 import SubCategoryDetails from "./components/user/CategorySection/SubCategoryDetails/SubCategoryDetails.jsx";
 import ProductDetails from "./pages/user/ProductDetails/ProductDetails.jsx";
+import Cart from "./pages/user/Cart/Cart.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -36,6 +37,10 @@ export default function App() {
         {
           path: "products",
           element: <Product apiPath={`products`} title={"ALL Product"} />,
+        },
+        {
+          path: "cart",
+          element: <Cart />,
         },
       ],
     },
