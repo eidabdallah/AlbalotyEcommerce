@@ -1,16 +1,23 @@
-import { useState } from 'react';
 import useFetch from './../../../components/hooks/useFetch.jsx';
 import Loading from './../../../components/shared/Loading/Loading.jsx';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styles from './Cart.module.css';
 
 export default function Cart() {
     const token = localStorage.getItem("userToken");
-    const { data, isLoading, error } = useFetch(`${import.meta.env.VITE_BURL}/cart`, true,{ headers: { Authorization: `${import.meta.env.VITE_BRAND_NAME}${token}` } });
+    const { data, isLoading, error } = useFetch(`${import.meta.env.VITE_BURL}/cart`, true, { headers: { Authorization: `${import.meta.env.VITE_BRAND_NAME}${token}` } });
 
     if (isLoading) return <Loading />;
-    if (error) return <p className="text-danger fw-bold text-center my-5">Error loading cart.</p>;
+    if (error && error !== "Cart not found") {
+    return (
+        <div className="d-flex justify-content-center align-items-center w-50 m-auto" style={{ height: '70vh' }}>
+            <Alert variant="danger" className="text-center fw-bold shadow-sm w-75">
+                ⚠️ Error: {error}
+            </Alert>
+        </div>
+    );
+}
 
     const cartItems = data?.products || [];
     const totalPrice = cartItems.reduce((sum, item) => {
@@ -111,12 +118,15 @@ export default function Cart() {
                             </>
                         ) : (
                             <div className="text-center py-5">
-                                <p className="text-muted mb-3">Your cart is empty.</p>
-                                <Link to="/user" className="btn btn-outline-primary rounded-pill">
+                                <Alert variant="warning" className="fw-bold shadow-sm mb-4 w-50 m-auto">
+                                    🛒 Your cart is empty. Start adding some items!
+                                </Alert>
+                                <Link to="/user" className="btn btn-warning rounded-pill px-4 py-2 fw-bold">
                                     Start Shopping
                                 </Link>
                             </div>
-                        )}
+                        )
+                        }
                     </div>
                 </Col>
             </Row>
