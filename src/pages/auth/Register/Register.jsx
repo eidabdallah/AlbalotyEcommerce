@@ -12,15 +12,16 @@ import usePost from "../../../components/hooks/usePost.jsx";
 import InputField from "../../../components/shared/InputField/InputField.jsx";
 
 export default function Register() {
-  const { register, handleSubmit, watch, formState: { errors }, } = useForm();
+  const { register, handleSubmit, watch, formState: { errors },reset } = useForm();
   const password = watch("password");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const navigate = useNavigate();
   const { postData, isLoading, serverError } = usePost(`${import.meta.env.VITE_BURL}/auth/register`);
   const registerForm = async (data) => {
-    const response = await postData(data);
-    if (response && response.status === 201) {
+    const res = await postData(data);
+    if (res && res.success && res.response?.status === 201) {
+      reset();
       ToastMessage({ message: "You're registered! Verify your email, then log in", type: "success", });
       navigate("/");
     }

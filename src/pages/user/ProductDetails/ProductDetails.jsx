@@ -5,19 +5,10 @@ import { useState } from "react";
 import styles from "./ProductDetails.module.css";
 import { FaTag, FaBox, FaStar } from "react-icons/fa";
 import { Alert } from "react-bootstrap";
-import { useAuth } from "../../../Context/AuthContext.jsx";
-import ToastMessage from "../../../components/shared/ToastMessage/ToastMessage.jsx";
+import AddToCart from "../../../components/user/AddToCart/AddToCart.jsx";
 
 export default function ProductDetails() {
   const { productId } = useParams();
-   const { isGuest } = useAuth();
-      const handleAddToCart = () => {
-          if (isGuest) {
-              ToastMessage({ message: "Please log in to add products to your cart.", type: "info" });
-              return;
-          }
-          // addToCart(product._id, navigate);
-      };
   const { data, isLoading, error } = useFetch(`${import.meta.env.VITE_BURL}/products/${productId}`);
   const [selectedImage, setSelectedImage] = useState(null);
   if (isLoading) return <Loading />;
@@ -83,7 +74,9 @@ export default function ProductDetails() {
                 </div>
               )}
             </div>
-            <button className="btn fw-bold px-4 py-2 rounded-pill shadow-sm mb-4 fs-5 bg-warning" onClick={handleAddToCart} style={isGuest ? { cursor: "not-allowed" } : {}} title={isGuest ? "Log in to add to cart" : ""}> 🛒 Add to Cart </button>
+            
+            <AddToCart productId={productId} />
+
           </div>
 
           <div className={`mb-4 p-3 rounded ${styles.infoCard}`}>

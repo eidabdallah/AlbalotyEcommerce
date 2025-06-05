@@ -6,7 +6,7 @@ export default function ProtectedRoute({ children }) {
 
   if (!userToken) {
     ToastMessage({ message: "Please log in to access this page.", type: "error" });
-    return <Navigate to={"/"} />;
+    return <Navigate to={"/"}  replace/>;
   }
   return children;
 }

@@ -5,24 +5,24 @@ import logo from "../../../assets/logo/logo.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../../components/shared/InputField/InputField.jsx";
-import usePost from "../../../components/hooks/usePost.jsx";
 import AlertMessage from "../../../components/shared/Alert/Alert.jsx";
 import ToastMessage from "../../../components/shared/ToastMessage/ToastMessage.jsx";
+import usePost from "../../../components/hooks/usePost.jsx";
 
 export default function Login() {
   const { register, handleSubmit, formState: { errors }, } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { postData, isLoading, serverError } = usePost(`${import.meta.env.VITE_BURL}/auth/login`);
-  const loginUser = async(data) => {
-    const response = await postData(data);
-    if (response && response.status === 200) {
-      ToastMessage({ message: "log in Successfully", type: "success", });
-      localStorage.setItem("userToken" , response.data.token);
+  const loginUser = async (data) => {
+    const res = await postData(data);
+    if (res && res.success && res.response?.status === 200) {
+      ToastMessage({ message: "Log in Successfully", type: "success" });
+      localStorage.setItem("userToken", res.data.token);
       navigate("/user");
     }
   };
- return (
+  return (
     <div className="text-center px-3">
       <img src={logo} alt="Logo" className="img-fluid w-50 bg-dark rounded-circle mb-3" />
       <h4 className="fw-bold mb-4">SIGN UP</h4>

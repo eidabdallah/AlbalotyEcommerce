@@ -6,26 +6,27 @@ export default function usePost(url) {
   const [serverError, setServerError] = useState("");
   const [data, setData] = useState(null);
 
-  const postData = async (payload) => {
+  const postData = async (payload, config = {}) => {
     setIsLoading(true);
     setServerError("");
+
     try {
-      const response = await axios.post(url, payload);
+      const response = await axios.post(url, payload, config);
       setData(response.data);
-      return response;
+
+      return { success: true, data: response.data, response };
     } catch (error) {
+      let message = "Unexpected error occurred";
       if (error.response) {
-        setServerError(error.response.data.message || "Server error");
+        message = error.response.data.message || "Server error";
       } else if (error.request) {
-        setServerError("No response from server");
-      } else {
-        setServerError("Unexpected error occurred");
+        message = "No response from server";
       }
-      return null;
+      setServerError(message);
+      return { success: false, error: message,response: error.response || null};
     } finally {
       setIsLoading(false);
     }
   };
-
-  return { postData, isLoading, serverError, data };
+  return { postData,isLoading,serverError,data,};
 }
