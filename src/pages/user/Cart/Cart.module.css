@@ -1,0 +1,59 @@
+.roundedCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  padding: 0;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+}
+
+.imageHover {
+  transition: transform 0.2s;
+  border-radius: 10px;
+}
+
+.imageHover:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.rowHover:hover {
+  background-color: #fdfdfd;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.darkBtn {
+  background-color: #212529;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.darkBtn:hover {
+  background-color: #444;
+}
+
+.quantityControls {
+  gap: 0.5rem;
+}
+
+.totalPriceBox {
+  border-top: 2px solid #eee;
+  padding-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.cartContainer {
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.titleIcon {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
