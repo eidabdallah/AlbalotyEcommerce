@@ -5,12 +5,14 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { FaSearch, FaUser, FaHeart, FaShoppingCart, FaLock } from "react-icons/fa";
 import { FiChevronDown } from "react-icons/fi";
 import styles from "./Navbar.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import AuthModal from './../../../pages/auth/AuthModal.jsx';
 import { useAuth } from "../../../Context/AuthContext.jsx";
+import { CartContext } from "../../../Context/CartContext.jsx";
 
 export default function CustomNavbar() {
+    const { cartCount } = useContext(CartContext);
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -73,12 +75,43 @@ export default function CustomNavbar() {
                                 </Nav.Link>
                             </Nav>
 
-                            <div className="d-flex gap-4 justify-content-evenly fs-4">
-                                <FaSearch />
-                                <FaUser onClick={() => setShowModal(true)} />
-                                <FaHeart />
-                                <FaShoppingCart />
+                            <div className="d-flex flex-column gap-3 mt-3">
+                                <div className="d-flex align-items-center gap-2">
+                                    <FaUser />
+                                    <Link to="/user/profile" className="text-white text-decoration-none">
+                                        Profile
+                                    </Link>
+                                </div>
+
+                                <div className="d-flex align-items-center gap-2">
+                                    <FaLock />
+                                    {isGuest ? (
+                                        <span
+                                            onClick={() => setShowModal(true)}
+                                            style={{ cursor: "pointer" }}
+                                            className="text-white"
+                                        >
+                                            Account
+                                        </span>
+                                    ) : (
+                                        <span
+                                            onClick={logout}
+                                            style={{ cursor: "pointer" }}
+                                            className="text-white"
+                                        >
+                                            Logout
+                                        </span>
+                                    )}
+                                </div>
+
+                                <div className="d-flex align-items-center gap-2">
+                                    <FaShoppingCart />
+                                    <Link to="/user/cart" className="text-white text-decoration-none">
+                                        Cart {cartCount}
+                                    </Link>
+                                </div>
                             </div>
+
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
 
@@ -161,7 +194,7 @@ export default function CustomNavbar() {
                                     }}
                                 >
                                     <FaShoppingCart />
-                                    <span>Cart</span>
+                                    <span>Cart {cartCount}</span>
                                 </Link>
                             </div>
                         </div>

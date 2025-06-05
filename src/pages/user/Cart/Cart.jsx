@@ -7,11 +7,7 @@ import styles from './Cart.module.css';
 
 export default function Cart() {
     const token = localStorage.getItem("userToken");
-    const { data, isLoading, error } = useFetch(
-        `${import.meta.env.VITE_BURL}/cart`,
-        true,
-        { headers: { Authorization: `${import.meta.env.VITE_BRAND_NAME}${token}` } }
-    );
+    const { data, isLoading, error } = useFetch(`${import.meta.env.VITE_BURL}/cart`, true,{ headers: { Authorization: `${import.meta.env.VITE_BRAND_NAME}${token}` } });
 
     if (isLoading) return <Loading />;
     if (error) return <p className="text-danger fw-bold text-center my-5">Error loading cart.</p>;

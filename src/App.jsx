@@ -15,6 +15,7 @@ import ProtectedRoute from "./components/user/ProtectedRoute.jsx";
 import AuthProvider from "./Context/AuthContext.jsx";
 import Profile from "./pages/user/Profile/Profile.jsx";
 import AuthProtectedRoute from "./components/user/AuthProtectedRoute.jsx";
+import CartContextProvider from "./Context/CartContext.jsx";
 export default function App() {
   const router = createBrowserRouter([
     {
@@ -110,8 +111,10 @@ export default function App() {
   ]);
   return (
     <>
+    <CartContextProvider>
       <ToastContainer />
       <RouterProvider router={router} />
+    </CartContextProvider>
     </>
   );
 }
