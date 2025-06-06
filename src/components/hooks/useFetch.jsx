@@ -22,5 +22,5 @@ export default function useFetch(url , shouldTrack = false , config = {}) {
         getData();
     },shouldTrack ? [url] : []);
 
-  return {data , error , isLoading , response};
+  return {data , error , isLoading , response , setData};
 }
