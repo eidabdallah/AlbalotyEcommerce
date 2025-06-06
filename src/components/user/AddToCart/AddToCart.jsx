@@ -1,10 +1,12 @@
-import { Alert } from 'react-bootstrap';
 import usePost from '../../hooks/usePost.jsx';
 import { useAuth } from './../../../Context/AuthContext';
 import ToastMessage from './../../shared/ToastMessage/ToastMessage';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { CartContext } from '../../../Context/CartContext.jsx';
 export default function AddToCart({ productId }) {
     const navigate = useNavigate();
+    const { cartCount , setCartCount} = useContext(CartContext);
     const { isGuest } = useAuth();
     const token = localStorage.getItem("userToken");
     const { postData, isLoading } = usePost(`${import.meta.env.VITE_BURL}/cart`);
@@ -23,6 +25,7 @@ export default function AddToCart({ productId }) {
             }
             ToastMessage({ message: res.error, type: "error" });
         } else {
+            setCartCount(cartCount + 1 );
             ToastMessage({ message: "Product added to cart!", type: "success" });
         }
     };

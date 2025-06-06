@@ -11,7 +11,7 @@ export default function useDeleteItem(setData, token) {
                 }
 
             });
-            if(cartCount == 0){
+            if(cartCount != 0){
                 setCartCount(cartCount - 1);
             }
             setData(prevCart => ({
