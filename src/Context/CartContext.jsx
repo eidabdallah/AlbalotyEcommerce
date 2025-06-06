@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import useFetch from "../components/hooks/useFetch.jsx";
 import axios from "axios";
 
 export const CartContext = createContext();
