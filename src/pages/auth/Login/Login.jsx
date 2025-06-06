@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import { useForm } from "react-hook-form";
 import logo from "../../../assets/logo/logo.png";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputField from "../../../components/shared/InputField/InputField.jsx";
 import AlertMessage from "../../../components/shared/Alert/Alert.jsx";
 import ToastMessage from "../../../components/shared/ToastMessage/ToastMessage.jsx";
@@ -30,6 +30,11 @@ export default function Login() {
         {serverError && <AlertMessage message={serverError} color="warning" />}
         <InputField label="Email" type="email" registerProps={register("email", { required: "Email is required", pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net)$/, message: "Must end with .com or .net" } })} error={errors.email} />
         <InputField label="Password" type={showPassword ? "text" : "password"} registerProps={register("password", { required: "Password is required", minLength: { value: 8, message: "Min 8 characters" }, pattern: { value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/, message: "Must include upper, lower, number & symbol" } })} error={errors.password} showToggle isShown={showPassword} onToggle={() => setShowPassword(p => !p)} />
+        <div className="text-end mb-3">
+          <Link to="/auth/resetPassword" className="text-decoration-none text-black fw-semibold">
+            Forgot password?
+          </Link>
+        </div>
         <Button variant="warning" type="submit" className="w-100 fw-bold" disabled={isLoading}>
           {isLoading ? "Loading..." : "LOGIN"}
         </Button>

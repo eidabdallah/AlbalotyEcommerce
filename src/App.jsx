@@ -59,7 +59,7 @@ export default function App() {
       ),
       children: [
         {
-          path: "forgotPassword",
+          path: "resetPassword",
           element: <ForgetPassword />,
         },
       ],
