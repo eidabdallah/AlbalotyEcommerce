@@ -12,7 +12,7 @@ import { useAuth } from "../../../Context/AuthContext.jsx";
 import { CartContext } from "../../../Context/CartContext.jsx";
 
 export default function CustomNavbar() {
-    const { cartCount } = useContext(CartContext);
+    const { cartCount , setCartCount} = useContext(CartContext);
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -20,6 +20,7 @@ export default function CustomNavbar() {
     const logout = () => {
         localStorage.removeItem("userToken");
         navigate("/");
+        setCartCount(0);
     }
     useEffect(() => {
         const handleScroll = () => {

@@ -1,18 +1,7 @@
-import { Card, Button } from 'react-bootstrap';
-import { FaShoppingCart } from 'react-icons/fa';
+import { Card } from 'react-bootstrap';
 import styles from './ProductCard.module.css';
-import { useAuth } from './../../../../Context/AuthContext.jsx';
-import ToastMessage from './../../../shared/ToastMessage/ToastMessage.jsx';
 
 export default function ProductCard({ product }) {
-    const { isGuest } = useAuth();
-    const handleAddToCart = () => {
-        if (isGuest) {
-            ToastMessage({ message: "Please log in to add products to your cart.", type: "info" });
-            return;
-        }
-        // addToCart(product._id, navigate);
-    };
     return (
         <Card className={`h-100 shadow-sm ${styles.cardHover}`}>
             <div className={styles.imageWrapper}>
@@ -36,11 +25,6 @@ export default function ProductCard({ product }) {
                         </>
                     )}
                 </div>
-
-                <Button variant="warning" className="mt-3 d-flex align-items-center justify-content-center gap-2" onClick={handleAddToCart} style={isGuest ? { cursor: "not-allowed" } : {}} title={isGuest ? "Log in to add to cart" : ""}>
-                    <FaShoppingCart />
-                    Add to Cart
-                </Button>
             </Card.Body>
         </Card>
     );

@@ -10,7 +10,6 @@
   width: 100%;
   max-width: 100%;
   transition: transform 0.3s ease;
-  background-color: red;
 }
 
 .logo:hover {
