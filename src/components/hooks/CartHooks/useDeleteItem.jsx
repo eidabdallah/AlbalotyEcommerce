@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useContext } from 'react';
-import { CartContext } from './../../Context/CartContext';
+import { CartContext } from './../../../Context/CartContext.jsx';
 export default function useDeleteItem(setData, token) {
     const { cartCount , setCartCount} = useContext(CartContext);
     const deleteItem = async (id) => {
@@ -9,6 +9,7 @@ export default function useDeleteItem(setData, token) {
                 headers: {
                     Authorization: `${import.meta.env.VITE_BRAND_NAME}${token}`
                 }
+
 
             });
             if(cartCount != 0){

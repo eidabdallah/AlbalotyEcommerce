@@ -6,9 +6,10 @@ import CartItem from './CartItem.jsx';
 import EmptyCartMessage from './EmptyCartMessage.jsx';
 import AlertMessage from '../../../components/shared/Alert/Alert.jsx';
 import CartTableHeader from './CartTableHeader.jsx';
-import useUpdateQty from '../../../components/hooks/useUpdateQty.jsx';
 import CartSummary from './CartSummary.jsx';
-import useDeleteItem from '../../../components/hooks/useDeleteItem.jsx';
+import useUpdateQty from '../../../components/hooks/CartHooks/useUpdateQty.jsx';
+import useDeleteItem from '../../../components/hooks/CartHooks/useDeleteItem.jsx';
+import useClearCart from '../../../components/hooks/CartHooks/useClearCart.jsx';
 
 export default function Cart() {
     const token = localStorage.getItem("userToken");
@@ -19,6 +20,7 @@ export default function Cart() {
     }
     const updateQty = useUpdateQty(setData, token);
     const deleteItem = useDeleteItem(setData, token);
+const clearCart = useClearCart(setData, token);
 
     const cartItems = data?.products || [];
     const totalPrice = cartItems.reduce((sum, item) => {
@@ -33,6 +35,12 @@ export default function Cart() {
                         <h4 className="mb-4 fw-bold text-warning d-flex align-items-center">
                             <span className="me-2">🛒</span> Shopping Cart
                         </h4>
+                        <div className="d-flex justify-content-end mb-3">
+    <button className="btn btn-outline-danger fw-semibold" onClick={clearCart}>
+        🗑️ Clear Cart
+    </button>
+</div>
+
                         {cartItems.length > 0 ? (
                             <>
                                 <CartTableHeader />
