@@ -20,7 +20,7 @@ export default function Cart() {
     }
     const updateQty = useUpdateQty(setData, token);
     const deleteItem = useDeleteItem(setData, token);
-const clearCart = useClearCart(setData, token);
+    const clearCart = useClearCart(setData, token);
 
     const cartItems = data?.products || [];
     const totalPrice = cartItems.reduce((sum, item) => {
@@ -36,10 +36,10 @@ const clearCart = useClearCart(setData, token);
                             <span className="me-2">🛒</span> Shopping Cart
                         </h4>
                         <div className="d-flex justify-content-end mb-3">
-    <button className="btn btn-outline-danger fw-semibold" onClick={clearCart}>
-        🗑️ Clear Cart
-    </button>
-</div>
+                            <button className="btn btn-outline-danger fw-semibold" onClick={clearCart}>
+                                🗑️ Clear Cart
+                            </button>
+                        </div>
 
                         {cartItems.length > 0 ? (
                             <>
